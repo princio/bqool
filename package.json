@@ -1,0 +1,14 @@
+{
+  "name": "@princio/bqool",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "typescript": "^5.5.0"
+  }
+}
