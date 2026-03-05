@@ -82,3 +82,72 @@ export interface AnswerData {
   question: QuestionRow;
   siblings: StudentSummary[];
 }
+
+// ── API response types ──────────────────────────────────────────────
+
+export interface OkResponse { ok: boolean }
+export interface OkIdResponse { ok: boolean; id: number }
+
+export interface QuestionDetail {
+  tests: { id: number; name: string; school_class_id: number; school_class_name: string }[];
+  test: { id: number; name: string } | null;
+  school_class: { id: number; name: string } | null;
+  question: QuestionRow;
+  students: {
+    id: number;
+    name: string;
+    school_class_id: number;
+    school_class_name: string;
+    has_answer: boolean;
+    attempt_id: number | null;
+    grade: number | null;
+  }[];
+  answers: Record<string, string>;
+  attempt_count: number;
+}
+
+export interface TestDetail {
+  test: { id: number; name: string };
+  school_class: { id: number; name: string };
+  questions: { id: number; name: string; number: number | null; text: string; expected_answer: string }[];
+  students: StudentSummary[];
+}
+
+export interface StudentTestData {
+  test: { id: number; name: string };
+  school_class: { id: number; name: string };
+  student: StudentSummary;
+  questions: { question_id: number; question_name: string; score: null }[];
+  media: null;
+  fascia: null;
+}
+
+export interface StudentTestsData {
+  student: StudentSummary;
+  school_class: { id: number; name: string };
+  tests: {
+    id: number;
+    name: string;
+    questions: {
+      id: number;
+      name: string;
+      score: null;
+      word_count: number;
+      blank: boolean;
+      has_answer: boolean;
+    }[];
+    media: number | null;
+    fascia: null;
+  }[];
+}
+
+export interface StudentTestAttemptsData {
+  test: { id: number; name: string; school_class_name: string; school_class_id: number };
+  student: StudentSummary;
+  attempts: {
+    question_id: number;
+    question_name: string;
+    question_text: string;
+    attempt: import('./attempt').AttemptDetail | null;
+  }[];
+}

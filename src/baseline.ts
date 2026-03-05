@@ -39,3 +39,64 @@ export interface BaselineBooleanQRow {
 export interface BaselineItemWithBooleanQs {
   booleanqs: BaselineBooleanQRow[];
 }
+
+export interface BaselineExportData {
+  question_id: string;
+  concepts: (RubricConceptRow & { booleanqs: BaselineBooleanQRow[] })[];
+  expressions: (BaselineExpressionRow & { booleanqs: BaselineBooleanQRow[] })[];
+  code: (BaselineCodeRow & { booleanqs: BaselineBooleanQRow[] })[];
+  errors: (BaselineErrorRow & { booleanqs: BaselineBooleanQRow[] })[];
+  students: string[];
+  answers: Record<string, string>;
+}
+
+export interface BaselineDetail {
+  question_id: number;
+  question_name: string;
+  question_text: string;
+  created_at: string;
+  updated_at: string;
+  students: {
+    id: number;
+    name: string;
+    school_class_id: number;
+    school_class: string;
+    has_answer: boolean;
+    not_answered: boolean;
+    answer: string | null;
+  }[];
+}
+
+export interface ReviewData {
+  attemptId: number;
+  question_id: number;
+  student_id: number;
+  student_name: string;
+  answer_text: string;
+  eval: {
+    concepts: import('./attempt').AttemptConceptRow[];
+    expressions: import('./attempt').AttemptExpressionRow[];
+    code: import('./attempt').AttemptCodeRow[];
+    coherence: { level: number; rationale: string } | null;
+    errors: import('./attempt').AttemptErrorRow[];
+  };
+  suggestions: Record<string, unknown>;
+  modifications: BaselineModification[];
+  booleanq: BaselineBooleanQRow[];
+  warnings: string[];
+}
+
+export interface BaselineModification {
+  item_type: string;
+  item_id: number;
+  field: string;
+  current: string;
+  proposed: string;
+}
+
+export interface SyncBaselinePayload {
+  concepts?: { name: string; definition: string }[];
+  expressions?: { name: string; type: string }[];
+  code?: { expression: string; type: string; correct_form: string }[];
+  errors?: { name: string; description: string }[];
+}
