@@ -75,7 +75,7 @@ export interface NavData {
   } | null;
 }
 
-export interface RispostaData {
+export interface AnswerData {
   text: string | null;
   blank: boolean;
   student: StudentDetail;
