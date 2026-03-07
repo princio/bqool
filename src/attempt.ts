@@ -98,6 +98,7 @@ export interface TestRisultatiData {
   students: {
     id: number;
     name: string;
+    final_grade: number | null;
     scores: Record<number, { grade_min: number | null; grade_max: number | null; bonus: number | null; blank: boolean }>;
   }[];
 }

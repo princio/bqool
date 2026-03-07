@@ -144,10 +144,12 @@ export interface StudentTestsData {
 export interface StudentTestAttemptsData {
   test: { id: number; name: string; school_class_name: string; school_class_id: number };
   student: StudentSummary;
+  final_grade: number | null;
   attempts: {
     question_id: number;
     question_name: string;
     question_text: string;
+    question_number: number | null;
     attempt: import('./attempt').AttemptDetail | null;
   }[];
 }
