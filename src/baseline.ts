@@ -34,6 +34,8 @@ export interface BaselineBooleanQRow {
   item_id: number;
   text: string;
   italian_text: string;
+  parent_name?: string;
+  parent_description?: string;
 }
 
 export interface BaselineItemWithBooleanQs {
