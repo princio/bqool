@@ -4,6 +4,7 @@ export interface RubricConceptRow {
   name: string;
   definition: string;
   position: number;
+  required: number; // 1 = required (counts toward grade), 0 = optional
 }
 
 export interface BaselineExpressionRow {
