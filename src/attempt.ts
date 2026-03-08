@@ -70,6 +70,7 @@ export interface AttemptBooleanQAnswer {
   answer: number;
   citation: string;
   rationale: string;
+  review_count?: number;
   booleanq_text?: string;
   booleanq_italian_text?: string;
   item_type?: string;
