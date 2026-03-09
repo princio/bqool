@@ -90,6 +90,9 @@ export interface AttemptDetail extends AttemptRow {
   errors: AttemptErrorRow[];
   booleanq_answers: AttemptBooleanQAnswer[];
   baseline_expressions: { id: number; name: string; type: string }[];
+  baseline_concepts: { id: number; name: string }[];
+  baseline_codes: { id: number; expression: string }[];
+  baseline_errors: { id: number; name: string }[];
   booleanq: BaselineBooleanQRow[];
 }
 
