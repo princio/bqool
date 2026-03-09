@@ -13,6 +13,7 @@ export interface AttemptRow {
   open_count: number;
   edit_count: number;
   last_edit: string | null;
+  protected: number;
 }
 
 export interface AttemptConceptRow {
