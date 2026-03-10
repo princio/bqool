@@ -29,6 +29,7 @@ export interface QuestionRow {
   name: string;
   text: string | null;
   expected_answer: string | null;
+  booleanqs_total?: number;
 }
 
 export interface NavAttemptSummary {

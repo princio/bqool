@@ -27,6 +27,7 @@ export interface AttemptConceptRow {
   concept_name?: string;
   definition?: string;
   required?: number;
+  booleanq_count?: number;
 }
 
 export interface AttemptExpressionRow {
