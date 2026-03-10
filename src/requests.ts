@@ -2,14 +2,14 @@
 export interface CreateSchoolClassRequest { name: string }
 export interface AddStudentRequest { name: string }
 
-// Question
+// Question (creates a RootQuestion)
 export interface CreateQuestionRequest { name: string; text?: string; expected_answer?: string; test_id?: number }
 export interface UpdateAnswerRequest { text?: string; blank?: boolean }
 
 // Test
 export interface CreateTestRequest { class_id: number; name: string }
 export interface UpdateTestRequest { name: string }
-export interface AddQuestionToTestRequest { question_id: number }
+export interface AddQuestionToTestRequest { root_question_id: number; copy_baseline?: boolean }
 export interface UpdateQuestionNumberRequest { number: number | null }
 
 // Rubric concept
