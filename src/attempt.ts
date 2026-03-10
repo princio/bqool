@@ -99,6 +99,62 @@ export interface AttemptDetail extends AttemptRow {
   booleanq: BaselineBooleanQRow[];
 }
 
+// ── Pipeline response types ──────────────────────────────────────────
+
+export interface PrepareAttemptResponse {
+  id: number;
+  question_id: number;
+  student_id: number;
+  student_name: string;
+  workdir: string;
+  relativePath: string;
+}
+
+export interface ImportAttemptOutputResult {
+  preview: boolean;
+  executed?: number;
+  errors?: string[];
+  warnings: string[];
+  suggestions?: Record<string, unknown> | null;
+  data?: unknown;
+}
+
+export interface ExportEvalData {
+  attempt_id: number;
+  exported_at: string;
+  coherence_level: number;
+  coherence_rationale: string;
+  grade_min: number | null;
+  grade_max: number | null;
+  grade_notes: string;
+  concepts: unknown[];
+  expressions: unknown[];
+  codes: unknown[];
+  errors: unknown[];
+  booleanq: unknown[];
+}
+
+export interface ImportEvalResult {
+  ok: boolean;
+  counts: { concepts: number; expressions: number; codes: number; errors: number; booleanq: number };
+}
+
+export interface InitAttemptItemsResult {
+  ok: boolean;
+  created: { concepts: number; expressions: number; codes: number; errors: number };
+}
+
+export interface CreateOrphanEvalItemResult {
+  ok: boolean;
+  id: number;
+  category: string;
+}
+
+export interface ConfirmReviewResult {
+  executed: number;
+  errors: string[];
+}
+
 export interface TestRisultatiData {
   test: { id: number; name: string };
   questions: { id: number; name: string; number: number | null }[];

@@ -93,6 +93,35 @@ export interface BaselineModification {
   proposed: string;
 }
 
+// ── Population response types ────────────────────────────────────────
+
+export interface PopulationReviewData {
+  question_id: number;
+  population_id: string;
+  concepts: unknown[];
+  expressions: unknown[];
+  code: unknown[];
+  errors: unknown[];
+}
+
+export interface CreatePopulationResponse {
+  id: string;
+  path: string;
+  relativePath: string;
+  question_id: number;
+}
+
+export interface ConfirmPopulationResult {
+  executed: number;
+  errors: string[];
+}
+
+export interface PopulationListItem {
+  id: string;
+  path: string;
+  has_output: boolean;
+}
+
 export interface SyncBaselinePayload {
   concepts?: { name: string; definition: string }[];
   expressions?: { name: string; type: string }[];

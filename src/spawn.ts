@@ -73,3 +73,8 @@ export interface ItemEvalBatchState {
   running: number;
   log: string[];
 }
+
+export interface PersistSessionOutputResult {
+  ok: boolean;
+  length: number;
+}
