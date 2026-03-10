@@ -89,20 +89,53 @@ export interface AnswerData {
 export interface OkResponse { ok: boolean }
 export interface OkIdResponse { ok: boolean; id: number }
 
+export interface QuestionListItem {
+  id: number;
+  name: string;
+  text: string;
+  expected_answer: string;
+  tests: { id: number; name: string; school_class_name: string; question_id: number }[];
+  concepts_count: number;
+  graded_count: number;
+  blank_count: number;
+  not_typed_count: number;
+}
+
+export interface QuestionDetailStudent {
+  id: number;
+  name: string;
+  school_class_id: number;
+  school_class: string;
+  has_answer: boolean;
+  blank: boolean;
+  word_count: number;
+  question_id: number | null;
+  attempt_id: number | null;
+  grade: number | null;
+  coherence_level: number | null;
+  concepts_total: number | null;
+  concepts_present: number | null;
+  expressions_pos: number | null;
+  expressions_neg: number | null;
+  errors_count: number | null;
+  concepts_completeness_sum: number | null;
+  nr_concepts_present: number | null;
+  nr_concepts_completeness_sum: number | null;
+  codes_correct: number | null;
+  codes_wrong: number | null;
+  review_count: number;
+  bonus: number | null;
+  protected: number | null;
+  has_output: boolean;
+  suggestions_count: number | null;
+}
+
 export interface QuestionDetail {
-  tests: { id: number; name: string; school_class_id: number; school_class_name: string }[];
+  tests: { id: number; name: string; school_class_id: number; school_class_name: string; question_id: number }[];
   test: { id: number; name: string } | null;
   school_class: { id: number; name: string } | null;
   question: QuestionRow;
-  students: {
-    id: number;
-    name: string;
-    school_class_id: number;
-    school_class_name: string;
-    has_answer: boolean;
-    attempt_id: number | null;
-    grade: number | null;
-  }[];
+  students: QuestionDetailStudent[];
   answers: Record<string, string>;
   attempt_count: number;
 }
@@ -110,7 +143,10 @@ export interface QuestionDetail {
 export interface TestDetail {
   test: { id: number; name: string };
   school_class: { id: number; name: string };
-  questions: { id: number; name: string; number: number | null; text: string; expected_answer: string }[];
+  questions: {
+    id: number; name: string; number: number | null; text: string; expected_answer: string;
+    rubric_count: number; expression_count: number; code_count: number; error_count: number;
+  }[];
   students: StudentSummary[];
 }
 

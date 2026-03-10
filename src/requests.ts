@@ -4,6 +4,7 @@ export interface AddStudentRequest { name: string }
 
 // Question (creates a RootQuestion)
 export interface CreateQuestionRequest { name: string; text?: string; expected_answer?: string; test_id?: number }
+export interface UpdateQuestionRequest { name?: string; text?: string; expected_answer?: string }
 export interface UpdateAnswerRequest { text?: string; blank?: boolean }
 
 // Test

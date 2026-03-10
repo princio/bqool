@@ -39,10 +39,6 @@ export interface BaselineBooleanQRow {
   parent_description?: string;
 }
 
-export interface BaselineItemWithBooleanQs {
-  booleanqs: BaselineBooleanQRow[];
-}
-
 export interface BaselineExportData {
   question_id: string;
   concepts: (RubricConceptRow & { booleanqs: BaselineBooleanQRow[] })[];

@@ -106,6 +106,10 @@ export interface TestRisultatiData {
     id: number;
     name: string;
     final_grade: number | null;
-    scores: Record<number, { grade_min: number | null; grade_max: number | null; bonus: number | null; blank: boolean }>;
+    scores: Record<number, {
+      grade_min: number | null; grade_max: number | null; bonus: number | null;
+      blank: boolean; word_count: number; status: 'blank' | 'filled' | 'to_fill';
+      booleanq_yes?: number;
+    }>;
   }[];
 }
