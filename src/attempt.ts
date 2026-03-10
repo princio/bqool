@@ -26,6 +26,7 @@ export interface AttemptConceptRow {
   rationale: string;
   concept_name?: string;
   definition?: string;
+  required?: number;
 }
 
 export interface AttemptExpressionRow {
