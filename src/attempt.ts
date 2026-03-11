@@ -22,7 +22,6 @@ export interface AttemptConceptRow {
   rubric_concept_id: number;
   present: number;
   completeness: number;
-  citations_json: string;
   rationale: string;
   concept_name?: string;
   definition?: string;
@@ -35,7 +34,6 @@ export interface AttemptExpressionRow {
   attempt_id: number;
   name: string;
   type: string;
-  citations_json: string;
   rationale: string;
   baseline_expression_id?: number | null;
   baseline?: { id: number; name: string; type: string } | null;
@@ -45,7 +43,6 @@ export interface AttemptCodeRow {
   id: number;
   attempt_id: number;
   name: string;
-  citation_json: string;
   type: string;
   correct_form: string;
   rationale: string;
@@ -60,7 +57,6 @@ export interface AttemptErrorRow {
   name: string;
   description: string;
   severity: number;
-  citations_json: string;
   rationale: string;
   baseline_error_id?: number | null;
   baseline?: { id: number; name: string; description: string } | null;

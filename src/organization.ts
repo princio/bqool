@@ -94,11 +94,14 @@ export interface QuestionListItem {
   name: string;
   text: string;
   expected_answer: string;
+  is_root: number;
   tests: { id: number; name: string; school_class_name: string; question_id: number }[];
   concepts_count: number;
+  nr_concepts_count: number;
   graded_count: number;
   blank_count: number;
   not_typed_count: number;
+  todo_count: number;
 }
 
 export interface QuestionDetailStudent {
@@ -145,7 +148,7 @@ export interface TestDetail {
   school_class: { id: number; name: string };
   questions: {
     id: number; name: string; number: number | null; text: string; expected_answer: string;
-    rubric_count: number; expression_count: number; code_count: number; error_count: number;
+    rubric_count: number; nr_rubric_count: number; expression_count: number; code_count: number; error_count: number;
   }[];
   students: StudentSummary[];
 }
