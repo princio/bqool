@@ -94,7 +94,6 @@ export interface QuestionListItem {
   name: string;
   text: string;
   expected_answer: string;
-  is_root: number;
   tests: { id: number; name: string; school_class_name: string; question_id: number }[];
   concepts_count: number;
   nr_concepts_count: number;
