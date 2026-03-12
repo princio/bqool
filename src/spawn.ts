@@ -3,7 +3,7 @@ import type { SpawnType } from './constants';
 export interface ClaudeSession {
   id: number;
   question_id: number;
-  attempt_id: number | null;
+  answer_id: number | null;
   student_name: string;
   spawn_type: SpawnType | string;
   command: string;
@@ -27,7 +27,7 @@ export interface BatchRunState {
   itemType?: string;
   phase: 'idle' | 'creating' | 'correcting' | 'importing' | 'done' | 'stopped';
   concurrency: number;
-  attempts: { attemptId: number; studentName: string; status: string; error?: string }[];
+  answers: { answerId: number; studentName: string; status: string; error?: string }[];
   completed: number;
   total: number;
   running: number;
@@ -52,7 +52,7 @@ export interface MergeWorkdirStatus {
 }
 
 export interface ItemEvalJob {
-  attemptId: number;
+  answerId: number;
   studentName: string;
   itemId: number;
   itemName: string;

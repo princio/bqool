@@ -29,7 +29,7 @@ export interface CreateCodeRequest { expression: string; type: string }
 // Error
 export interface CreateErrorRequest { name: string; description: string }
 
-// Attempt grade
+// Answer grade
 export interface SetGradeRequest { grade_min: number; grade_max: number }
 export interface SetBonusRequest { bonus: number | null }
 

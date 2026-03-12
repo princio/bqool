@@ -38,9 +38,6 @@ export interface NavAnswerSummary {
   workdir: string;
 }
 
-/** @deprecated use NavAnswerSummary */
-export type NavAttemptSummary = NavAnswerSummary;
-
 export interface SiblingScore {
   grade: number | null;
   coherence_level: number;
@@ -177,15 +174,15 @@ export interface StudentTestsData {
   }[];
 }
 
-export interface StudentTestAttemptsData {
+export interface StudentTestAnswersData {
   test: { id: number; name: string; classroom_name: string; classroom_id: number };
   student: StudentSummary;
   final_grade: number | null;
-  attempts: {
+  answers: {
     question_id: number;
     question_name: string;
     question_text: string;
     question_number: number | null;
-    answer: import('./attempt').AnswerDetail | null;
+    answer: import('./answer').AnswerDetail | null;
   }[];
 }
