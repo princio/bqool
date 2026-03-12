@@ -20,8 +20,8 @@ export interface StudentSummary {
 export interface StudentDetail {
   id: number;
   name: string;
-  school_class_id: number;
-  school_class_name: string;
+  classroom_id: number;
+  classroom_name: string;
 }
 
 export interface QuestionRow {
@@ -32,19 +32,17 @@ export interface QuestionRow {
   booleanqs_total?: number;
 }
 
-export interface NavAttemptSummary {
+export interface NavAnswerSummary {
   id: number;
-  grade_min: number | null;
-  grade_max: number | null;
-  open_count: number;
-  edit_count: number;
-  last_edit: string | null;
+  grade: number | null;
   workdir: string;
 }
 
+/** @deprecated use NavAnswerSummary */
+export type NavAttemptSummary = NavAnswerSummary;
+
 export interface SiblingScore {
-  grade_min: number | null;
-  grade_max: number | null;
+  grade: number | null;
   coherence_level: number;
   concepts_present: number;
   concepts_total: number;
@@ -61,7 +59,7 @@ export interface NavData {
   student: StudentSummary;
   question: QuestionRow;
   siblings: (StudentSummary & { score: SiblingScore | null })[];
-  attempt: NavAttemptSummary | null;
+  answer: NavAnswerSummary | null;
   test: {
     id: number;
     name: string;
@@ -71,14 +69,14 @@ export interface NavData {
       name: string;
       number: number | null;
       has_answer: boolean;
-      attempt_summary: { grade_min: number | null; grade_max: number | null } | null;
+      answer_summary: { grade: number | null } | null;
     }[];
   } | null;
 }
 
 export interface AnswerData {
   text: string | null;
-  blank: boolean;
+  isblank: boolean;
   student: StudentDetail;
   question: QuestionRow;
   siblings: StudentSummary[];
@@ -94,7 +92,7 @@ export interface QuestionListItem {
   name: string;
   text: string;
   expected_answer: string;
-  tests: { id: number; name: string; school_class_name: string; question_id: number }[];
+  tests: { id: number; name: string; classroom_name: string; question_id: number }[];
   concepts_count: number;
   nr_concepts_count: number;
   graded_count: number;
@@ -106,13 +104,12 @@ export interface QuestionListItem {
 export interface QuestionDetailStudent {
   id: number;
   name: string;
-  school_class_id: number;
-  school_class: string;
+  classroom_id: number;
+  classroom: string;
   has_answer: boolean;
-  blank: boolean;
+  isblank: boolean;
   word_count: number;
   question_id: number | null;
-  attempt_id: number | null;
   grade: number | null;
   coherence_level: number | null;
   concepts_total: number | null;
@@ -126,25 +123,25 @@ export interface QuestionDetailStudent {
   codes_correct: number | null;
   codes_wrong: number | null;
   review_count: number;
-  bonus: number | null;
+  grade_bonus: number | null;
   protected: number | null;
   has_output: boolean;
   suggestions_count: number | null;
 }
 
 export interface QuestionDetail {
-  tests: { id: number; name: string; school_class_id: number; school_class_name: string; question_id: number }[];
+  tests: { id: number; name: string; classroom_id: number; classroom_name: string; question_id: number }[];
   test: { id: number; name: string } | null;
-  school_class: { id: number; name: string } | null;
+  classroom: { id: number; name: string } | null;
   question: QuestionRow;
   students: QuestionDetailStudent[];
   answers: Record<string, string>;
-  attempt_count: number;
+  answer_count: number;
 }
 
 export interface TestDetail {
   test: { id: number; name: string };
-  school_class: { id: number; name: string };
+  classroom: { id: number; name: string };
   questions: {
     id: number; name: string; number: number | null; text: string; expected_answer: string;
     rubric_count: number; nr_rubric_count: number; expression_count: number; code_count: number; error_count: number;
@@ -154,7 +151,7 @@ export interface TestDetail {
 
 export interface StudentTestData {
   test: { id: number; name: string };
-  school_class: { id: number; name: string };
+  classroom: { id: number; name: string };
   student: StudentSummary;
   questions: { question_id: number; question_name: string; score: null }[];
   media: null;
@@ -163,7 +160,7 @@ export interface StudentTestData {
 
 export interface StudentTestsData {
   student: StudentSummary;
-  school_class: { id: number; name: string };
+  classroom: { id: number; name: string };
   tests: {
     id: number;
     name: string;
@@ -172,7 +169,7 @@ export interface StudentTestsData {
       name: string;
       score: null;
       word_count: number;
-      blank: boolean;
+      isblank: boolean;
       has_answer: boolean;
     }[];
     media: number | null;
@@ -181,7 +178,7 @@ export interface StudentTestsData {
 }
 
 export interface StudentTestAttemptsData {
-  test: { id: number; name: string; school_class_name: string; school_class_id: number };
+  test: { id: number; name: string; classroom_name: string; classroom_id: number };
   student: StudentSummary;
   final_grade: number | null;
   attempts: {
@@ -189,6 +186,6 @@ export interface StudentTestAttemptsData {
     question_name: string;
     question_text: string;
     question_number: number | null;
-    attempt: import('./attempt').AttemptDetail | null;
+    answer: import('./attempt').AnswerDetail | null;
   }[];
 }

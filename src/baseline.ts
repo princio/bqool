@@ -4,47 +4,48 @@ export interface RubricConceptRow {
   name: string;
   definition: string;
   position: number;
-  required: number; // 1 = required (counts toward grade), 0 = optional
+  required: number;
 }
 
-export interface BaselineExpressionRow {
+export interface RubricExpressionRow {
   id: number;
   question_id: number;
   name: string;
-  type: string;
+  definition: string;
+  severity: number;
 }
 
-export interface BaselineCodeRow {
-  id: number;
-  question_id: number;
-  expression: string;
-  type: string;
-  correct_form: string;
-}
-
-export interface BaselineErrorRow {
+export interface RubricCodeRow {
   id: number;
   question_id: number;
   name: string;
-  description: string;
+  definition: string;
+  severity: number;
 }
 
-export interface BaselineBooleanQRow {
+export interface RubricErrorRow {
+  id: number;
+  question_id: number;
+  name: string;
+  definition: string;
+  severity: number;
+}
+
+export interface RubricBooleanQRow {
   id: number;
   item_type: string;
-  item_id: number;
+  rubric_item_id: number;
   text: string;
-  italian_text: string;
   parent_name?: string;
   parent_description?: string;
 }
 
 export interface BaselineExportData {
   question_id: string;
-  concepts: (RubricConceptRow & { booleanqs: BaselineBooleanQRow[] })[];
-  expressions: (BaselineExpressionRow & { booleanqs: BaselineBooleanQRow[] })[];
-  code: (BaselineCodeRow & { booleanqs: BaselineBooleanQRow[] })[];
-  errors: (BaselineErrorRow & { booleanqs: BaselineBooleanQRow[] })[];
+  concepts: (RubricConceptRow & { booleanqs: RubricBooleanQRow[] })[];
+  expressions: (RubricExpressionRow & { booleanqs: RubricBooleanQRow[] })[];
+  code: (RubricCodeRow & { booleanqs: RubricBooleanQRow[] })[];
+  errors: (RubricErrorRow & { booleanqs: RubricBooleanQRow[] })[];
   students: string[];
   answers: Record<string, string>;
 }
@@ -58,8 +59,8 @@ export interface BaselineDetail {
   students: {
     id: number;
     name: string;
-    school_class_id: number;
-    school_class: string;
+    classroom_id: number;
+    classroom: string;
     has_answer: boolean;
     not_answered: boolean;
     answer: string | null;
@@ -67,21 +68,18 @@ export interface BaselineDetail {
 }
 
 export interface ReviewData {
-  attemptId: number;
+  answerId: number;
   question_id: number;
   student_id: number;
   student_name: string;
   answer_text: string;
   eval: {
-    concepts: import('./attempt').AttemptConceptRow[];
-    expressions: import('./attempt').AttemptExpressionRow[];
-    code: import('./attempt').AttemptCodeRow[];
+    booleanqs: import('./attempt').PenmarkBooleanQRow[];
     coherence: { level: number; rationale: string } | null;
-    errors: import('./attempt').AttemptErrorRow[];
   };
   suggestions: Record<string, unknown>;
   modifications: BaselineModification[];
-  booleanq: BaselineBooleanQRow[];
+  rubric_booleanq: RubricBooleanQRow[];
   warnings: string[];
 }
 
@@ -124,7 +122,7 @@ export interface PopulationListItem {
 
 export interface SyncBaselinePayload {
   concepts?: { name: string; definition: string }[];
-  expressions?: { name: string; type: string }[];
-  code?: { expression: string; type: string; correct_form: string }[];
-  errors?: { name: string; description: string }[];
+  expressions?: { name: string; severity: number; definition?: string }[];
+  code?: { name: string; severity: number; definition?: string }[];
+  errors?: { name: string; definition: string }[];
 }

@@ -1,103 +1,49 @@
-import type { BaselineBooleanQRow } from './baseline';
-
-export interface AttemptRow {
+export interface AnswerRow {
   id: number;
   question_id: number;
   student_id: number;
-  grade_min: number | null;
-  grade_max: number | null;
-  bonus: number | null;
-  grade_notes: string;
+  text: string;
+  isblank: number;
+  grade: number | null;
+  grade_bonus: number | null;
+  grade_rationale: string;
   coherence_level: number;
   coherence_rationale: string;
-  open_count: number;
-  edit_count: number;
-  last_edit: string | null;
   protected: number;
+  created_at: string;
+  updated_at: string | null;
 }
 
-export interface AttemptConceptRow {
+export interface PenmarkBooleanQRow {
   id: number;
-  attempt_id: number;
-  rubric_concept_id: number;
-  present: number;
-  completeness: number;
-  rationale: string;
-  concept_name?: string;
-  definition?: string;
-  required?: number;
-  booleanq_count?: number;
-}
-
-export interface AttemptExpressionRow {
-  id: number;
-  attempt_id: number;
-  name: string;
-  type: string;
-  rationale: string;
-  baseline_expression_id?: number | null;
-  baseline?: { id: number; name: string; type: string } | null;
-}
-
-export interface AttemptCodeRow {
-  id: number;
-  attempt_id: number;
-  name: string;
-  type: string;
-  correct_form: string;
-  rationale: string;
-  active: number;
-  baseline_code_id?: number | null;
-  baseline?: { id: number; expression: string; type: string; correct_form: string } | null;
-}
-
-export interface AttemptErrorRow {
-  id: number;
-  attempt_id: number;
-  name: string;
-  description: string;
-  severity: number;
-  rationale: string;
-  baseline_error_id?: number | null;
-  baseline?: { id: number; name: string; description: string } | null;
-}
-
-export interface AttemptBooleanQAnswer {
-  id: number;
-  attempt_id: number;
-  baseline_booleanq_id: number;
+  answer_id: number;
+  rubric_booleanq_id: number;
   answer: number;
-  citation: string;
+  citations: string[];
   rationale: string;
-  review_count?: number;
+  reviewed_count: number;
   booleanq_text?: string;
-  booleanq_italian_text?: string;
   item_type?: string;
-  item_id?: number;
+  rubric_item_id?: number;
 }
 
-export interface AttemptDetail extends AttemptRow {
+export interface AnswerDetail extends AnswerRow {
   student_name: string;
   question_name: string;
   question_text: string;
   workdir: string;
-  answer_text: string;
   generated_prompt: string;
-  concepts: AttemptConceptRow[];
-  expressions: AttemptExpressionRow[];
-  codes: AttemptCodeRow[];
-  errors: AttemptErrorRow[];
-  booleanq_answers: AttemptBooleanQAnswer[];
-  baseline_expressions: { id: number; name: string; type: string }[];
+  booleanqs: PenmarkBooleanQRow[];
+  baseline_expressions: { id: number; name: string; severity: number }[];
   baseline_concepts: { id: number; name: string }[];
-  baseline_codes: { id: number; expression: string }[];
+  baseline_codes: { id: number; name: string }[];
   baseline_errors: { id: number; name: string }[];
-  booleanq: BaselineBooleanQRow[];
+  rubric_booleanq: import('./baseline').RubricBooleanQRow[];
 }
 
 // ── Pipeline response types ──────────────────────────────────────────
 
-export interface PrepareAttemptResponse {
+export interface PrepareAnswerResponse {
   id: number;
   question_id: number;
   student_id: number;
@@ -105,6 +51,9 @@ export interface PrepareAttemptResponse {
   workdir: string;
   relativePath: string;
 }
+
+/** @deprecated use PrepareAnswerResponse */
+export type PrepareAttemptResponse = PrepareAnswerResponse;
 
 export interface ImportAttemptOutputResult {
   preview: boolean;
@@ -116,29 +65,31 @@ export interface ImportAttemptOutputResult {
 }
 
 export interface ExportEvalData {
-  attempt_id: number;
+  answer_id: number;
   exported_at: string;
   coherence_level: number;
   coherence_rationale: string;
-  grade_min: number | null;
-  grade_max: number | null;
-  grade_notes: string;
-  concepts: unknown[];
-  expressions: unknown[];
-  codes: unknown[];
-  errors: unknown[];
+  grade: number | null;
+  grade_bonus: number | null;
+  grade_rationale: string;
   booleanq: unknown[];
 }
 
 export interface ImportEvalResult {
   ok: boolean;
-  counts: { concepts: number; expressions: number; codes: number; errors: number; booleanq: number };
+  counts: { booleanq: number };
 }
 
-export interface InitAttemptItemsResult {
+export interface InitAnswerItemsResult {
   ok: boolean;
-  created: { concepts: number; expressions: number; codes: number; errors: number };
+  created: { booleanq: number };
 }
+
+/** @deprecated use InitAnswerItemsResult */
+export type InitAttemptItemsResult = InitAnswerItemsResult;
+
+/** @deprecated use AnswerDetail */
+export type AttemptDetail = AnswerDetail;
 
 export interface CreateOrphanEvalItemResult {
   ok: boolean;
@@ -159,8 +110,8 @@ export interface TestRisultatiData {
     name: string;
     final_grade: number | null;
     scores: Record<number, {
-      grade_min: number | null; grade_max: number | null; bonus: number | null;
-      blank: boolean; word_count: number; status: 'blank' | 'filled' | 'to_fill';
+      grade: number | null; grade_bonus: number | null;
+      isblank: boolean; word_count: number; status: 'blank' | 'filled' | 'to_fill';
       booleanq_yes?: number;
     }>;
   }[];
