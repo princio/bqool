@@ -40,7 +40,7 @@ export interface RubricBooleanQRow {
   parent_description?: string;
 }
 
-export interface BaselineExportData {
+export interface RubricExportData {
   question_id: string;
   concepts: (RubricConceptRow & { booleanqs: RubricBooleanQRow[] })[];
   expressions: (RubricExpressionRow & { booleanqs: RubricBooleanQRow[] })[];
@@ -50,7 +50,7 @@ export interface BaselineExportData {
   answers: Record<string, string>;
 }
 
-export interface BaselineDetail {
+export interface RubricDetail {
   question_id: number;
   question_name: string;
   question_text: string;
@@ -74,16 +74,16 @@ export interface ReviewData {
   student_name: string;
   answer_text: string;
   eval: {
-    booleanqs: import('./attempt').PenmarkBooleanQRow[];
+    booleanqs: import('./answer').PenmarkBooleanQRow[];
     coherence: { level: number; rationale: string } | null;
   };
   suggestions: Record<string, unknown>;
-  modifications: BaselineModification[];
+  modifications: RubricModification[];
   rubric_booleanq: RubricBooleanQRow[];
   warnings: string[];
 }
 
-export interface BaselineModification {
+export interface RubricModification {
   item_type: string;
   item_id: number;
   field: string;
@@ -120,7 +120,7 @@ export interface PopulationListItem {
   has_output: boolean;
 }
 
-export interface SyncBaselinePayload {
+export interface SyncRubricPayload {
   concepts?: { name: string; definition: string }[];
   expressions?: { name: string; severity: number; definition?: string }[];
   code?: { name: string; severity: number; definition?: string }[];

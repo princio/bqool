@@ -52,10 +52,7 @@ export interface PrepareAnswerResponse {
   relativePath: string;
 }
 
-/** @deprecated use PrepareAnswerResponse */
-export type PrepareAttemptResponse = PrepareAnswerResponse;
-
-export interface ImportAttemptOutputResult {
+export interface ImportAnswerOutputResult {
   preview: boolean;
   executed?: number;
   errors?: string[];
@@ -84,12 +81,6 @@ export interface InitAnswerItemsResult {
   ok: boolean;
   created: { booleanq: number };
 }
-
-/** @deprecated use InitAnswerItemsResult */
-export type InitAttemptItemsResult = InitAnswerItemsResult;
-
-/** @deprecated use AnswerDetail */
-export type AttemptDetail = AnswerDetail;
 
 export interface CreateOrphanEvalItemResult {
   ok: boolean;
