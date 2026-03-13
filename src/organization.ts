@@ -79,6 +79,20 @@ export interface AnswerData {
   siblings: StudentSummary[];
 }
 
+export interface TestListItem {
+  id: number;
+  name: string;
+  classroom_name: string;
+  classroom_id: number;
+}
+
+export interface BackupListItem {
+  id: number;
+  answer_id: number;
+  created_at: string;
+  label: string;
+}
+
 // ── API response types ──────────────────────────────────────────────
 
 export interface OkResponse { ok: boolean }

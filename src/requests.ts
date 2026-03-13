@@ -35,3 +35,13 @@ export interface SetBonusRequest { bonus: number | null }
 
 // BooleanQ answer
 export interface UpsertBooleanQAnswerRequest { answer?: boolean; citation?: string; rationale?: string }
+
+// Rubric item update
+export interface UpdateRubricItemFieldRequest { field: string; value: string | number }
+
+// Review
+export interface SaveReviewDraftRequest { data: unknown }
+export interface ConfirmReviewRequest { data: unknown }
+
+// Import eval
+export interface ImportEvalRequest { data: unknown }
