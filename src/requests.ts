@@ -30,7 +30,7 @@ export interface CreateCodeRequest { expression: string; type: string }
 export interface CreateErrorRequest { name: string; description: string }
 
 // Answer grade
-export interface SetGradeRequest { grade_min: number; grade_max: number }
+export interface SetGradeRequest { grade: number }
 export interface SetBonusRequest { bonus: number | null }
 
 // BooleanQ answer
