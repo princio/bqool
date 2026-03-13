@@ -20,6 +20,9 @@ export const SPAWN_TYPE_RB_SEEKER   = 'rb-seeker'   as const;
 export const SPAWN_TYPE_RB_ITEM     = 'penmark-item'     as const;
 export const SPAWN_TYPE_RB_BOOLEANQ = 'penmark-booleanq' as const;
 export const SPAWN_TYPE_TYPE_BATCH  = 'type-batch'  as const;
+export const SPAWN_TYPE_PENMARK_CORRECTION = 'penmark-correction' as const;
+export const SPAWN_TYPE_PENMARK_ITEM_FORK  = 'penmark-item-fork'  as const;
 export type SpawnType = typeof SPAWN_TYPE_MONOLITHIC | typeof SPAWN_TYPE_RECHECK
                       | typeof SPAWN_TYPE_RB_SEEKER  | typeof SPAWN_TYPE_RB_ITEM
-                      | typeof SPAWN_TYPE_RB_BOOLEANQ | typeof SPAWN_TYPE_TYPE_BATCH;
+                      | typeof SPAWN_TYPE_RB_BOOLEANQ | typeof SPAWN_TYPE_TYPE_BATCH
+                      | typeof SPAWN_TYPE_PENMARK_CORRECTION | typeof SPAWN_TYPE_PENMARK_ITEM_FORK;
