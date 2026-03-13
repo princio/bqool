@@ -107,6 +107,7 @@ export interface QuestionDetailStudent {
   isblank: boolean;
   word_count: number;
   question_id: number | null;
+  answer_id: number | null;
   grade: number | null;
   coherence_level: number | null;
   concepts_total: number | null;
