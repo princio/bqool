@@ -35,7 +35,7 @@ export interface AnswerDetail extends AnswerRow {
   generated_prompt: string;
   booleanqs: PenmarkBooleanQRow[];
   baseline_expressions: { id: number; name: string; severity: number }[];
-  baseline_concepts: { id: number; name: string }[];
+  baseline_concepts: { id: number; name: string; definition?: string; required?: number }[];
   baseline_codes: { id: number; name: string }[];
   baseline_errors: { id: number; name: string }[];
   rubric_booleanq: import('./baseline').RubricBooleanQRow[];
