@@ -40,6 +40,17 @@ export interface RubricBooleanQRow {
   parent_description?: string;
 }
 
+/** Common fields shared by all rubric item types */
+export interface RubricItemBase {
+  id: number;
+  question_id: number;
+  name: string;
+  definition: string;
+}
+
+/** Union of all rubric item row types */
+export type RubricItem = RubricConceptRow | RubricExpressionRow | RubricCodeRow | RubricErrorRow;
+
 export type RubricItemWithBooleanQs =
   | (RubricConceptRow & { booleanqs: Pick<RubricBooleanQRow, 'id' | 'text'>[] })
   | (RubricExpressionRow & { booleanqs: Pick<RubricBooleanQRow, 'id' | 'text'>[] })

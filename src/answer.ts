@@ -99,6 +99,69 @@ export interface ConfirmReviewResult {
   errors: string[];
 }
 
+// ── AI output types ──────────────────────────────────────────────────
+
+/** AI correction output for a single BooleanQ evaluation */
+export interface AiBooleanQResult {
+  id: number;
+  answer: boolean;
+  citations: string[];
+  rationale: string;
+}
+
+/** AI correction output for item-level evaluation (multi-question) */
+export interface AiItemEvalOutput {
+  'booleanq-questions': AiBooleanQResult[];
+}
+
+/** AI coherence evaluation output */
+export interface AiCoherenceOutput {
+  level: number;
+  rationale: string;
+}
+
+/** Resolved rubric item from AI review (with matched baseline) */
+export interface ResolvedRubricItem {
+  name: string;
+  booleanqs?: { id: number; answer: boolean; citations?: string[]; rationale?: string }[];
+  rubric_concept_id?: number | null;
+  rubric_expression_id?: number | null;
+  rubric_code_id?: number | null;
+  rubric_error_id?: number | null;
+  baseline?: { id: number; name: string; severity?: number; definition?: string } | null;
+  [key: string]: unknown;
+}
+
+/** Baseline item proposed by AI for adding to rubric */
+export interface BaselineProposal {
+  name?: string;
+  expression?: string;
+  type?: string;
+  severity?: number;
+  definition?: string;
+  description?: string;
+}
+
+/** Confirm review payload from frontend */
+export interface ConfirmReviewPayload {
+  eval: {
+    concepts: ResolvedRubricItem[];
+    expressions: ResolvedRubricItem[];
+    code: ResolvedRubricItem[];
+    errors: ResolvedRubricItem[];
+    coherence: (AiCoherenceOutput & { livello?: number }) | null;
+    booleanqs?: AiBooleanQResult[];
+  };
+  baseline: {
+    concepts: BaselineProposal[];
+    expressions: BaselineProposal[];
+    code: BaselineProposal[];
+    errors: BaselineProposal[];
+  };
+}
+
+// ── Score / results types ────────────────────────────────────────────
+
 export interface TestRisultatiData {
   test: { id: number; name: string };
   questions: { id: number; name: string; number: number | null }[];

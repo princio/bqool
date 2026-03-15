@@ -39,6 +39,9 @@ export interface UpsertBooleanQAnswerRequest { answer?: boolean; citations?: str
 // Rubric item update
 export interface UpdateRubricItemFieldRequest { field: string; value: string | number }
 
+// Rubric item creation (generic — covers expression, code, error)
+export interface CreateRubricItemRequest { name?: string; expression?: string; severity?: number; definition?: string; description?: string }
+
 // Review
 export interface SaveReviewDraftRequest { data: unknown }
 export interface ConfirmReviewRequest { data: unknown }
