@@ -98,6 +98,12 @@ export interface BackupListItem {
 export interface OkResponse { ok: boolean }
 export interface OkIdResponse { ok: boolean; id: number }
 
+/** Minimal school class listing item */
+export interface SchoolClassListItem { id: number; name: string }
+
+/** Response for JSON import */
+export interface ImportJsonResponse { ok: boolean; question_id: number }
+
 export interface QuestionListItem {
   id: number;
   name: string;

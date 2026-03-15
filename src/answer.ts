@@ -110,7 +110,7 @@ export interface AiBooleanQResult {
 }
 
 /** AI correction output for item-level evaluation (multi-question) */
-export interface AiItemEvalOutput {
+export interface AiItemCorrectionOutput {
   'booleanq-questions': AiBooleanQResult[];
 }
 
@@ -118,6 +118,22 @@ export interface AiItemEvalOutput {
 export interface AiCoherenceOutput {
   level: number;
   rationale: string;
+}
+
+/** Group of BooleanQ results within one rubric item (from AI output file) */
+export interface AiCorrectionItemGroup {
+  booleanqs?: Partial<AiBooleanQResult>[];
+  domande?: Partial<AiBooleanQResult>[];
+}
+
+/** Full AI correction output file shape (concepts + expressions + code + errors + coherence) */
+export interface AiFullCorrectionOutput {
+  concepts?: AiCorrectionItemGroup[];
+  expressions?: AiCorrectionItemGroup[];
+  code?: AiCorrectionItemGroup[];
+  errors?: AiCorrectionItemGroup[];
+  coherence?: Partial<AiCoherenceOutput>;
+  suggestions?: Record<string, unknown>;
 }
 
 /** Resolved rubric item from AI review (with matched baseline) */
@@ -159,6 +175,29 @@ export interface ConfirmReviewPayload {
     errors: BaselineProposal[];
   };
 }
+
+// ── Controller response types ────────────────────────────────────────
+
+/** Response for toggling answer protection */
+export interface ToggleProtectionResponse { ok: boolean; protected: number }
+
+/** Response for batch answer creation */
+export interface BatchCreateResponse { ok: boolean; created: number }
+
+/** Response for batch answer reset */
+export interface BatchResetResponse { ok: boolean; reset: number }
+
+/** Response for workdir status check */
+export interface WorkdirStatusResponse { workdir_mtime: string | null; output_mtime: string | null }
+
+/** Response for workdir recreation */
+export interface RecreateWorkdirResponse { ok: boolean; workdir: string }
+
+/** Response for AI item correction */
+export interface CorrectItemResponse { ok: boolean; count: number }
+
+/** Response for AI item preview (wraps multiple BooleanQ results) */
+export interface PreviewItemResponse { results: AiBooleanQResult[] }
 
 // ── Score / results types ────────────────────────────────────────────
 

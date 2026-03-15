@@ -108,6 +108,16 @@ export interface RubricModification {
   proposed: string;
 }
 
+/** Shape of a single rubric item in a population confirm payload */
+export interface PopulationItemPayload {
+  name?: string;
+  expression?: string;
+  definition?: string;
+  description?: string;
+  severity?: number;
+  booleanqs?: { text: string }[];
+}
+
 // ── Population response types ────────────────────────────────────────
 
 export interface PopulationReviewData {
@@ -136,6 +146,9 @@ export interface PopulationListItem {
   path: string;
   has_output: boolean;
 }
+
+/** Response for marking rubric item obsolete */
+export interface MarkObsoleteResponse { updated: number }
 
 export interface SyncRubricPayload {
   concepts?: { name: string; definition: string }[];

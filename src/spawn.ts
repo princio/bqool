@@ -22,12 +22,29 @@ export interface ClaudeSession {
   stderr?: string;
 }
 
+export type RunStatus = 'pending' | 'running' | 'done' | 'error';
+
+export interface RunAnswerInfo {
+  answerId: number;
+  studentName: string;
+  status: RunStatus;
+  error?: string;
+  pid?: number;
+  process_alive?: boolean;
+  started_at?: string;
+  finished_at?: string;
+  exit_code?: number | null;
+  session_id?: number;
+  stdout_lines?: string[];
+  stderr_lines?: string[];
+}
+
 export interface BatchRunState {
   questionId: number;
   itemType?: string;
-  phase: 'idle' | 'creating' | 'correcting' | 'importing' | 'done' | 'stopped';
+  phase: 'idle' | 'creating' | 'correcting' | 'rechecking' | 'importing' | 'done' | 'stopped';
   concurrency: number;
-  answers: { answerId: number; studentName: string; status: string; error?: string }[];
+  answers: RunAnswerInfo[];
   completed: number;
   total: number;
   running: number;
@@ -51,7 +68,7 @@ export interface MergeWorkdirStatus {
   relativePath?: string;
 }
 
-export interface ItemEvalJob {
+export interface ItemCorrectionJob {
   answerId: number;
   studentName: string;
   itemId: number;
@@ -62,17 +79,30 @@ export interface ItemEvalJob {
   finished_at?: string;
 }
 
-export interface ItemEvalBatchState {
+export interface ItemCorrectionBatchState {
   questionId: number;
   itemType: string;
   phase: 'idle' | 'running' | 'done' | 'stopped';
   concurrency: number;
-  jobs: ItemEvalJob[];
+  jobs: ItemCorrectionJob[];
   completed: number;
   total: number;
   running: number;
   log: string[];
+  model?: string;
+  useSeedFork?: boolean;
+  seedsCompleted?: number;
+  seedsTotal?: number;
 }
+
+/** Response for batch workdir creation */
+export interface BatchWorkdirResponse { created: number; skipped: number }
+
+/** Response for merge workdir creation */
+export interface MergeWorkdirResponse { workdir: string; relativePath: string }
+
+/** Response for merge import */
+export interface ImportMergeResponse { population_id: string }
 
 export interface PersistSessionOutputResult {
   ok: boolean;

@@ -48,3 +48,17 @@ export interface ConfirmReviewRequest { data: unknown }
 
 // Import eval
 export interface ImportEvalRequest { data: unknown }
+
+// AI operations
+/** Common body for AI operations that accept an optional model override */
+export interface AiModelRequest { model?: string }
+
+/** Request body for launching an item correction batch run */
+export interface LaunchItemCorrectionRequest {
+  question_id: number;
+  item_type: string;
+  student_ids?: number[];
+  concurrency?: number;
+  model?: string;
+  use_seed_fork?: boolean;
+}
