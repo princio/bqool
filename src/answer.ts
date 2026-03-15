@@ -61,7 +61,13 @@ export interface ImportAnswerOutputResult {
   data?: unknown;
 }
 
-export interface ExportEvalData {
+/** Categories for updating existing correction data */
+export type UpdateCorrectionCategory = 'penmark_booleanq' | 'answer' | 'coherence';
+
+/** Categories for creating free-form correction items */
+export type FreeCorrectionCategory = 'expression' | 'code' | 'error';
+
+export interface ExportCorrectionData {
   answer_id: number;
   exported_at: string;
   coherence_level: number;
@@ -72,7 +78,7 @@ export interface ExportEvalData {
   booleanq: unknown[];
 }
 
-export interface ImportEvalResult {
+export interface ImportCorrectionResult {
   ok: boolean;
   counts: { booleanq: number };
 }
@@ -82,10 +88,10 @@ export interface InitAnswerItemsResult {
   created: { booleanq: number };
 }
 
-export interface CreateOrphanEvalItemResult {
+export interface CreateOrphanCorrectionItemResult {
   ok: boolean;
   id: number;
-  category: string;
+  category: FreeCorrectionCategory;
 }
 
 export interface ConfirmReviewResult {
