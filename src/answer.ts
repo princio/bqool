@@ -14,7 +14,7 @@ export interface AnswerRow {
   updated_at: string | null;
 }
 
-export interface CorrectionBooleanQRow {
+export interface BooleanAnswerRow {
   id: number;
   answer_id: number;
   rubric_booleanq_id: number;
@@ -33,7 +33,7 @@ export interface AnswerDetail extends AnswerRow {
   question_text: string;
   workdir: string;
   generated_prompt: string;
-  booleanqs: CorrectionBooleanQRow[];
+  booleanqs: BooleanAnswerRow[];
   baseline_expressions: { id: number; name: string; severity: number }[];
   baseline_concepts: { id: number; name: string; definition?: string; required?: number }[];
   baseline_codes: { id: number; name: string }[];
@@ -62,7 +62,7 @@ export interface ImportAnswerOutputResult {
 }
 
 /** Categories for updating existing correction data */
-export type UpdateCorrectionCategory = 'penmark_booleanq' | 'answer' | 'coherence';
+export type UpdateCorrectionCategory = 'boolean_answer' | 'answer' | 'coherence';
 
 /** Categories for creating free-form correction items */
 export type FreeCorrectionCategory = 'expression' | 'code' | 'error';
