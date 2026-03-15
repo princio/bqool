@@ -147,9 +147,6 @@ export interface PopulationListItem {
   has_output: boolean;
 }
 
-/** Response for marking rubric item obsolete */
-export interface MarkObsoleteResponse { updated: number }
-
 export interface SyncRubricPayload {
   concepts?: { name: string; definition: string }[];
   expressions?: { name: string; severity: number; definition?: string }[];
