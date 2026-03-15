@@ -13,6 +13,14 @@ export const RB_ITEM_TYPE_ERROR      = 'error'      as const;
 export type  RbItemType = typeof RB_ITEM_TYPE_CONCEPT | typeof RB_ITEM_TYPE_EXPRESSION
                         | typeof RB_ITEM_TYPE_CODE    | typeof RB_ITEM_TYPE_ERROR;
 
+export const RUBRIC_ITEM_TYPES = [
+  { type: RB_ITEM_TYPE_CONCEPT,    prefix: 'C', dataKey: 'concepts',    hasSeverity: false, defaultSeverity: 0,  showSeverityInPrompt: false },
+  { type: RB_ITEM_TYPE_EXPRESSION, prefix: 'V', dataKey: 'expressions', hasSeverity: true,  defaultSeverity: 0,  showSeverityInPrompt: true  },
+  { type: RB_ITEM_TYPE_CODE,       prefix: 'K', dataKey: 'code',        hasSeverity: true,  defaultSeverity: 0,  showSeverityInPrompt: true  },
+  { type: RB_ITEM_TYPE_ERROR,      prefix: 'E', dataKey: 'errors',      hasSeverity: true,  defaultSeverity: -2, showSeverityInPrompt: false },
+] as const;
+export type RubricItemTypeDescriptor = (typeof RUBRIC_ITEM_TYPES)[number];
+
 // Spawn types (claude_session.spawn_type)
 export const SPAWN_TYPE_MONOLITHIC  = 'monolithic'  as const;
 export const SPAWN_TYPE_RECHECK     = 'recheck'     as const;

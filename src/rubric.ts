@@ -40,6 +40,12 @@ export interface RubricBooleanQRow {
   parent_description?: string;
 }
 
+export type RubricItemWithBooleanQs =
+  | (RubricConceptRow & { booleanqs: Pick<RubricBooleanQRow, 'id' | 'text'>[] })
+  | (RubricExpressionRow & { booleanqs: Pick<RubricBooleanQRow, 'id' | 'text'>[] })
+  | (RubricCodeRow & { booleanqs: Pick<RubricBooleanQRow, 'id' | 'text'>[] })
+  | (RubricErrorRow & { booleanqs: Pick<RubricBooleanQRow, 'id' | 'text'>[] });
+
 export interface RubricExportData {
   question_id: string;
   concepts: (RubricConceptRow & { booleanqs: RubricBooleanQRow[] })[];
