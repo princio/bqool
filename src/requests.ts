@@ -34,7 +34,7 @@ export interface SetGradeRequest { grade: number }
 export interface SetBonusRequest { bonus: number | null }
 
 // BooleanQ answer
-export interface UpsertBooleanQAnswerRequest { answer?: boolean; citation?: string; rationale?: string }
+export interface UpsertBooleanQAnswerRequest { answer?: boolean; citations?: string[]; rationale?: string }
 
 // Rubric item update
 export interface UpdateRubricItemFieldRequest { field: string; value: string | number }
