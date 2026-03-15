@@ -14,7 +14,7 @@ export interface AnswerRow {
   updated_at: string | null;
 }
 
-export interface PenmarkBooleanQRow {
+export interface CorrectionBooleanQRow {
   id: number;
   answer_id: number;
   rubric_booleanq_id: number;
@@ -33,7 +33,7 @@ export interface AnswerDetail extends AnswerRow {
   question_text: string;
   workdir: string;
   generated_prompt: string;
-  booleanqs: PenmarkBooleanQRow[];
+  booleanqs: CorrectionBooleanQRow[];
   baseline_expressions: { id: number; name: string; severity: number }[];
   baseline_concepts: { id: number; name: string; definition?: string; required?: number }[];
   baseline_codes: { id: number; name: string }[];

@@ -25,12 +25,20 @@ export type RubricItemTypeDescriptor = (typeof RUBRIC_ITEM_TYPES)[number];
 export const SPAWN_TYPE_MONOLITHIC  = 'monolithic'  as const;
 export const SPAWN_TYPE_RECHECK     = 'recheck'     as const;
 export const SPAWN_TYPE_RB_SEEKER   = 'rb-seeker'   as const;
-export const SPAWN_TYPE_RB_ITEM     = 'penmark-item'     as const;
-export const SPAWN_TYPE_RB_BOOLEANQ = 'penmark-booleanq' as const;
 export const SPAWN_TYPE_TYPE_BATCH  = 'type-batch'  as const;
-export const SPAWN_TYPE_PENMARK_CORRECTION = 'penmark-correction' as const;
-export const SPAWN_TYPE_PENMARK_ITEM_FORK  = 'penmark-item-fork'  as const;
+// Correction spawn types
+export const SPAWN_TYPE_CORRECTION_ITEM      = 'correction-item'      as const;
+export const SPAWN_TYPE_CORRECTION_BOOLEANQ  = 'correction-booleanq'  as const;
+export const SPAWN_TYPE_CORRECTION_COHERENCE = 'correction-coherence' as const;
+export const SPAWN_TYPE_PENMARK_CORRECTION   = 'penmark-correction'   as const;
+export const SPAWN_TYPE_PENMARK_ITEM_FORK    = 'penmark-item-fork'    as const;
+/** @deprecated Use SPAWN_TYPE_CORRECTION_ITEM */
+export const SPAWN_TYPE_RB_ITEM     = SPAWN_TYPE_CORRECTION_ITEM;
+/** @deprecated Use SPAWN_TYPE_CORRECTION_BOOLEANQ */
+export const SPAWN_TYPE_RB_BOOLEANQ = SPAWN_TYPE_CORRECTION_BOOLEANQ;
 export type SpawnType = typeof SPAWN_TYPE_MONOLITHIC | typeof SPAWN_TYPE_RECHECK
-                      | typeof SPAWN_TYPE_RB_SEEKER  | typeof SPAWN_TYPE_RB_ITEM
-                      | typeof SPAWN_TYPE_RB_BOOLEANQ | typeof SPAWN_TYPE_TYPE_BATCH
+                      | typeof SPAWN_TYPE_RB_SEEKER
+                      | typeof SPAWN_TYPE_CORRECTION_ITEM | typeof SPAWN_TYPE_CORRECTION_BOOLEANQ
+                      | typeof SPAWN_TYPE_CORRECTION_COHERENCE
+                      | typeof SPAWN_TYPE_TYPE_BATCH
                       | typeof SPAWN_TYPE_PENMARK_CORRECTION | typeof SPAWN_TYPE_PENMARK_ITEM_FORK;

@@ -80,7 +80,7 @@ export interface ReviewData {
   student_name: string;
   answer_text: string;
   eval: {
-    booleanqs: import('./answer').PenmarkBooleanQRow[];
+    booleanqs: import('./answer').CorrectionBooleanQRow[];
     coherence: { level: number; rationale: string } | null;
   };
   suggestions: Record<string, unknown>;
