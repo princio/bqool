@@ -1,5 +1,5 @@
 export * from './organization';
-export * from './baseline';
+export * from './rubric';
 export * from './answer';
 export * from './constants';
 export * from './requests';
