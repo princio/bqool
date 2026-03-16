@@ -86,6 +86,12 @@ export interface TestListItem {
   classroom_id: number;
 }
 
+export interface TestRow {
+  id: number;
+  name: string;
+  classroom_id: number;
+}
+
 export interface BackupListItem {
   id: number;
   answer_id: number;

@@ -120,6 +120,14 @@ export interface PopulationItemPayload {
 
 // ── Population response types ────────────────────────────────────────
 
+/** Raw JSON output shape written by Claude to output/population.json */
+export interface PopulationJsonOutput {
+  concepts?: unknown[];
+  expressions?: unknown[];
+  code?: unknown[];
+  errors?: unknown[];
+}
+
 export interface PopulationReviewData {
   question_id: number;
   population_id: string;

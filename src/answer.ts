@@ -27,6 +27,63 @@ export interface BooleanAnswerRow {
   rubric_item_id?: number;
 }
 
+// ── Derived correction items (rubric item + BooleanAnswer evaluation) ──
+
+/** Concept enriched with derived evaluation state from BooleanAnswers */
+export interface CorrectionConceptItem {
+  id: number;
+  name: string;
+  definition?: string;
+  required?: number;
+  present: boolean;
+  completeness: number;
+  booleanq_count: number;
+  booleanq_answers: BooleanAnswerRow[];
+  rationale: string[];
+  citations: string[];
+}
+
+/** Expression enriched with derived evaluation state */
+export interface CorrectionExpressionItem {
+  id: number;
+  name: string;
+  severity: number;
+  positive: boolean;
+  detected: boolean;
+  booleanq_answers: BooleanAnswerRow[];
+  rationale: string[];
+  citations: string[];
+}
+
+/** Code item enriched with derived evaluation state */
+export interface CorrectionCodeItem {
+  id: number;
+  name: string;
+  severity: number;
+  positive: boolean;
+  detected: boolean;
+  booleanq_answers: BooleanAnswerRow[];
+  rationale: string[];
+  citations: string[];
+}
+
+/** Error item enriched with derived evaluation state */
+export interface CorrectionErrorItem {
+  id: number;
+  name: string;
+  severity: number;
+  detected: boolean;
+  booleanq_answers: BooleanAnswerRow[];
+  rationale: string[];
+  citations: string[];
+}
+
+export type CorrectionItem =
+  | CorrectionConceptItem
+  | CorrectionExpressionItem
+  | CorrectionCodeItem
+  | CorrectionErrorItem;
+
 export interface AnswerDetail extends AnswerRow {
   student_name: string;
   question_name: string;
