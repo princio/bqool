@@ -55,3 +55,93 @@ export interface RunnerQueueStatus {
   running: number;
   queued: number;
 }
+
+// ── Domain request types (raw domain data — no prompts) ───────────────────────
+
+export interface CorrectionBooleanqRequest {
+  answer_id: number;
+  question_id: number;
+  student_name: string;
+  answer_text: string;
+  item_type: string;
+  item: { id: number; name: string; definition?: string; severity?: number };
+  booleanq: { id: number; text: string };
+  model?: string;
+}
+
+export interface CorrectionItemRequest {
+  answer_id: number;
+  question_id: number;
+  student_name: string;
+  answer_text: string;
+  item_type: string;
+  item: { id: number; name: string; definition?: string; severity?: number };
+  booleanqs: { id: number; text: string }[];
+  model?: string;
+}
+
+export interface CorrectionCoherenceRequest {
+  answer_id: number;
+  question_id: number;
+  student_name: string;
+  answer_text: string;
+  model?: string;
+}
+
+export interface CorrectionSeedRequest {
+  answer_id: number;
+  question_id: number;
+  student_name: string;
+  answer_text: string;
+  item_type: string;
+  model?: string;
+}
+
+export interface CorrectionSeedResponse {
+  session_id: string;
+  workdir_label: string;
+}
+
+export interface CorrectionForkRequest {
+  answer_id: number;
+  question_id: number;
+  student_name: string;
+  item_type: string;
+  item: { id: number; name: string; definition?: string; severity?: number };
+  booleanqs: { id: number; text: string }[];
+  parent_session_id: string;
+  parent_workdir_label: string;
+  model?: string;
+}
+
+export interface RubricSeekRequest {
+  question_id: number;
+  student_id: number;
+  student_name: string;
+  item_type: string;
+  question_text: string;
+  answer_text: string;
+  model?: string;
+}
+
+// ── Rubric-merge workdir types ────────────────────────────────────────────────
+
+export interface RubricMergeCreateWorkdirRequest {
+  question_id: number;
+  item_type: string;
+}
+
+export interface RubricMergeWorkdirResponse {
+  workdir: string;
+  relativePath: string;
+}
+
+export interface RubricMergeStatusResponse {
+  hasMergeWorkdir: boolean;
+  hasOutput: boolean;
+  relativePath?: string;
+}
+
+export interface RubricMergeImportResponse {
+  population_id: string;
+}

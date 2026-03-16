@@ -5,3 +5,4 @@ export * from './constants';
 export * from './requests';
 export * from './spawn';
 export * from './runner';
+export * from './parse-json-output';
