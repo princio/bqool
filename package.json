@@ -9,7 +9,9 @@
   ],
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "validate-routes": "npx ts-node --skip-project --compiler-options '{\"module\":\"CommonJS\"}' scripts/validate-routes.ts",
+    "validate-runner-routes": "npx ts-node --skip-project --compiler-options '{\"module\":\"CommonJS\"}' scripts/validate-runner-routes.ts"
   },
   "devDependencies": {
     "typescript": "^5.5.0"
