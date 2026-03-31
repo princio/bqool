@@ -1,13 +1,11 @@
-import { Question } from "./others";
-
 /** Criterion categories: key concept, language expression quality, or code correctness. */
-export type CriterionCategory = 'concept' | 'expression' | 'code';
+export type CriterionCategory = 'concept' | 'expression' | 'code' | 'error';
 
 /** A single rubric entry used to evaluate a student answer. */
 export interface Criterion {
   id: number;
 
-  question: Question; /* FK Many-to-One */
+  /* FK question_id Many-to-One */
 
   name: string;
   definition: string;
@@ -15,8 +13,7 @@ export interface Criterion {
 
   position: number;
   required: boolean;
-
-  booleanqs: BooleanQ[]; /* (reverse) FK One-to-Many */
+  /* booleanqs (reverse) FK One-to-Many */
 }
 
 /**
@@ -28,7 +25,7 @@ export interface Criterion {
 export interface BooleanQ {
   id: number;
 
-  criterion: Criterion; /* FK Many-to-One */
+  /* FK criterion_id Many-to-One */
 
   text: string;
 

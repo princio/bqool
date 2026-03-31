@@ -1,5 +1,4 @@
-import { BooleanQ, CriterionCategory } from "./rubric";
-import { Question, Student } from "./others";
+import { CriterionCategory } from "./rubric";
 import { CoherenceLevels } from "./grade";
 
 export type PenmarkCategory = Exclude<CriterionCategory, "concept">;
@@ -8,8 +7,8 @@ export type PenmarkCategory = Exclude<CriterionCategory, "concept">;
 export interface AnswerBooleanQ {
   id: number;
 
-  booleanq: BooleanQ; /* FK Many-to-One */
-  answer: Answer; /* FK Many-to-One */
+  /* FK booleanq_id Many-to-One */
+  /* FK answer_id Many-to-One */
 
   rationale: string;
   citations: string[];
@@ -22,10 +21,10 @@ export interface AnswerBooleanQ {
 export interface AnswerPenmark {
   id: number;
 
-  answer: Answer; /* FK Many-to-One */
+  /* FK answer_id Many-to-One */
 
   category: PenmarkCategory;
-  
+
   rationale: string;
   citations: string[];
 
@@ -36,8 +35,8 @@ export interface AnswerPenmark {
 export interface Answer {
   id: number;
 
-  student: Student;   /* FK Many-to-One */
-  question: Question; /* FK Many-to-One */
+  /* FK student_id Many-to-One */
+  /* FK question_id Many-to-One */
 
   created_at: string;
   updated_at: string | null;
@@ -57,4 +56,4 @@ export interface Answer {
       rationale: string | null;
     }
   }
-};
+}

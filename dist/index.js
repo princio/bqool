@@ -18,3 +18,4 @@ __exportStar(require("./answer"), exports);
 __exportStar(require("./grade"), exports);
 __exportStar(require("./others"), exports);
 __exportStar(require("./rubric"), exports);
+__exportStar(require("./derived"), exports);

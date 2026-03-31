@@ -1,12 +1,9 @@
-import { BooleanQ, CriterionCategory } from "./rubric";
-import { Question, Student } from "./others";
+import { CriterionCategory } from "./rubric";
 import { CoherenceLevels } from "./grade";
 export type PenmarkCategory = Exclude<CriterionCategory, "concept">;
 /** AI-generated yes/no evaluation of a single boolean question against a student answer. */
 export interface AnswerBooleanQ {
     id: number;
-    booleanq: BooleanQ;
-    answer: Answer;
     rationale: string;
     citations: string[];
     satisfied: boolean;
@@ -15,7 +12,6 @@ export interface AnswerBooleanQ {
 /** AI-generated yes/no evaluation of a single boolean question against a student answer. */
 export interface AnswerPenmark {
     id: number;
-    answer: Answer;
     category: PenmarkCategory;
     rationale: string;
     citations: string[];
@@ -24,8 +20,6 @@ export interface AnswerPenmark {
 /** A student's free-text response to a question. */
 export interface Answer {
     id: number;
-    student: Student;
-    question: Question;
     created_at: string;
     updated_at: string | null;
     is_locked: boolean;
