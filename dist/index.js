@@ -15,7 +15,13 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./answer"), exports);
-__exportStar(require("./grade"), exports);
-__exportStar(require("./others"), exports);
-__exportStar(require("./rubric"), exports);
+__exportStar(require("./classroom"), exports);
 __exportStar(require("./derived"), exports);
+__exportStar(require("./grade"), exports);
+__exportStar(require("./grid"), exports);
+__exportStar(require("./question"), exports);
+__exportStar(require("./booleanq"), exports);
+__exportStar(require("./criterion"), exports);
+__exportStar(require("./student"), exports);
+__exportStar(require("./student-test"), exports);
+__exportStar(require("./test"), exports);

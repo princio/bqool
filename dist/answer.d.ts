@@ -1,4 +1,4 @@
-import { CriterionCategory } from "./rubric";
+import { CriterionCategory } from "./criterion";
 import { CoherenceLevels } from "./grade";
 export type PenmarkCategory = Exclude<CriterionCategory, "concept">;
 /** AI-generated yes/no evaluation of a single boolean question against a student answer. */

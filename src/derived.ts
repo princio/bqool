@@ -1,6 +1,7 @@
 import { Answer, AnswerBooleanQ } from "./answer";
-import { Question } from "./others";
-import { BooleanQ, Criterion } from "./rubric";
+import { Question } from "./question";
+import { BooleanQ } from "./booleanq";
+import { Criterion } from "./criterion";
 
 
 export namespace Derived {
@@ -14,5 +15,10 @@ export namespace Derived {
     answer: Answer;
     question: Question;
     criteria: AnswerCriterion[];
+  }
+
+  export interface Rubric {
+    question: Question;
+    criteria: Criterion[];
   }
 }

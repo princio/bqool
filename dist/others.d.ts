@@ -14,7 +14,7 @@ export interface Question {
     name: string;
     text: string;
     expected_answer: string | null;
-    grade_params: GradeParams;
+    grade_params: GradeParams | null;
 }
 /** A test assigned to a classroom, containing one or more questions. */
 export interface Test {
