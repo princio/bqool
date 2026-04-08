@@ -13,5 +13,10 @@ export interface Criterion {
 
   position: number;
   required: boolean;
+
+  severity: number;
+
+  completeness: number;
+  
   /* booleanqs (reverse) FK One-to-Many */
 }

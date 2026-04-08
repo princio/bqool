@@ -49,16 +49,25 @@ Every interface field that represents a database relationship uses a comment:
 ### Criterion
 
 A single rubric entry (concept, expression, or code) used to evaluate a student answer.
-`category` is the label; grading behavior is driven by `BooleanQ.severity`.
-
-### BooleanQ
-
-A yes/no question derived from a Criterion. Severity semantics:
+`category` is the label; grading behavior is driven by `Criterion.severity`. Severity semantics:
 
 | severity | satisfied | unsatisfied |
 |----------|-----------|-------------|
 | > 0      | correct   | error (positive trait missing) |
 | < 0      | error     | neutral (error absent) |
+
+### BooleanQ
+
+A yes/no question derived from a Criterion, optionally used by AI to evaluate a student answer.
+A `BooleanQ` carries only its `text` text; severity lives on the parent `Criterion`.
+
+### BooleanQAnswer
+
+The generated yes/no evaluation of a single `BooleanQ` against an `Answer`.
+
+### Penmark
+
+A generated annotation on an `Answer` (non-concept categories only) carrying a rationale, citations, and a severity without a reference to criterion.
 
 
 ## Answer grade

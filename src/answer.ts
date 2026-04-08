@@ -1,34 +1,17 @@
 import { CriterionCategory } from "./criterion";
 import { CoherenceLevels } from "./grade";
 
-export type PenmarkCategory = Exclude<CriterionCategory, "concept">;
 
-/** AI-generated yes/no evaluation of a single boolean question against a student answer. */
-export interface AnswerBooleanQ {
-  id: number;
-
-  /* FK booleanq_id Many-to-One */
-  /* FK answer_id Many-to-One */
-
-  rationale: string;
-  citations: string[];
-  satisfied: boolean;
-
-  reviews: number;
-}
-
-/** AI-generated yes/no evaluation of a single boolean question against a student answer. */
-export interface AnswerPenmark {
-  id: number;
-
-  /* FK answer_id Many-to-One */
-
-  category: PenmarkCategory;
-
-  rationale: string;
-  citations: string[];
-
-  severity: number;
+export interface Verdict {
+    coherence: {
+      level: CoherenceLevels | null;
+      rationale: string | null;
+    }
+    grade: {
+      value: number | null;
+      bonus: number | null;
+      rationale: string | null;
+    }
 }
 
 /** A student's free-text response to a question. */
@@ -46,16 +29,4 @@ export interface Answer {
   is_blank: boolean;
 
   verdict: Verdict;
-}
-
-export interface Verdict {
-    coherence: {
-      level: CoherenceLevels | null;
-      rationale: string | null;
-    }
-    grade: {
-      value: number | null;
-      bonus: number | null;
-      rationale: string | null;
-    }
 }
