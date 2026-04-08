@@ -45,7 +45,10 @@ export interface Answer {
   text: string;
   is_blank: boolean;
 
-  verdict: {
+  verdict: Verdict;
+}
+
+export interface Verdict {
     coherence: {
       level: CoherenceLevels | null;
       rationale: string | null;
@@ -55,5 +58,4 @@ export interface Answer {
       bonus: number | null;
       rationale: string | null;
     }
-  }
 }

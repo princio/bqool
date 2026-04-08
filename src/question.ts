@@ -6,7 +6,7 @@ export interface Question {
 
   /* FK test_id Many-to-One */
 
-  position: number;
+  position: number | null;
   name: string;
   text: string;
 

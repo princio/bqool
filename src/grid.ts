@@ -18,7 +18,7 @@ export interface Grid {
   indicators: GridIndicator[];
 }
 
-export interface GridEvaluated {
+export interface GridScore {
     weights: number[] | null;
     levels: number[];
 }
