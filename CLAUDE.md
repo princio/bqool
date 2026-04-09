@@ -16,12 +16,12 @@ It defines all domain interfaces consumed by backend, runner, and frontend.
 Changes flow downstream, never upstream:
 
 ```
-bqool  →  bqool-backend-types  →  bqool-backend
+bqool  →  bqool-contracts  →  bqool-backend
               (& bqool-frontend, bqool-runner, ...)
 ```
 
 - `bqool` defines the domain. Edit it when the domain model is wrong.
-- `bqool-backend-types` defines API contracts built from `bqool` types. Edit it when the API shape is wrong.
+- `bqool-contracts` defines API contracts built from `bqool` types. Edit it when the API shape is wrong.
 - `bqool-backend` is an implementation. **Never edit types to match what the implementation returns** — fix the implementation to match the types.
 
 When the implementation disagrees with the types, the implementation is the bug.
