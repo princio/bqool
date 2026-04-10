@@ -1,14 +1,17 @@
+import { Answer } from "./answer";
+import { BooleanQ } from "./booleanq";
 
 /** AI-generated yes/no evaluation of a single boolean question against a student answer. */
 export interface BooleanQAnswer {
   id: number;
 
-  /* FK booleanq_id Many-to-One */
-  /* FK answer_id Many-to-One */
+  answer: Answer;
+  booleanq: BooleanQ;
 
   rationale: string;
   citations: string[];
-  satisfied: boolean;
+
+  is_satisfied: boolean;
 
   reviews: number;
 }

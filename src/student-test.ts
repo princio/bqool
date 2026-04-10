@@ -1,12 +1,15 @@
+import { Answer } from "./answer";
 import { GridScore } from "./grid";
+import { Student } from "./student";
+import { Test } from "./test";
 
 export interface StudentTest {
   id: number;
 
-  /* FK student_id Many-to-One */
-  /* FK test_id Many-to-One */
+  student: Student;
+  test: Test;
 
-  grid_evaulated: GridScore;
+  grid: GridScore;
 
   grade: {
     value: number | null;
@@ -18,5 +21,5 @@ export interface StudentTest {
     rationale: string | null;
   };
 
-  /* answers  (reverse) FK One-to-Many */
+  answers: Answer[];
 }

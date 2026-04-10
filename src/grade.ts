@@ -1,6 +1,7 @@
 
 
 export type ConceptScaling = "proportional" | "cap";
+export type FormatLevels = 1 | 2 | 3;
 export type CoherenceLevels = 1 | 2 | 3;
 export type Points = number;
 

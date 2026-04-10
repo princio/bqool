@@ -1,32 +1,34 @@
 import { CriterionCategory } from "./criterion";
-import { CoherenceLevels } from "./grade";
+import { CoherenceLevels, FormatLevels } from "./grade";
+import { Question } from "./question";
+import { Student } from "./student";
 
-
-export interface Verdict {
-    coherence: {
-      level: CoherenceLevels | null;
-      rationale: string | null;
-    }
-    grade: {
-      value: number | null;
-      bonus: number | null;
-      rationale: string | null;
-    }
-}
 
 /** A student's free-text response to a question. */
 export interface Answer {
   id: number;
 
-  /* FK student_id Many-to-One */
-  /* FK question_id Many-to-One */
+  student: Student;
+  question: Question;
 
   created_at: string;
   updated_at: string | null;
-  is_locked: boolean;
 
-  text: string;
+  is_locked: boolean;
   is_blank: boolean;
 
-  verdict: Verdict;
+  text: string;
+
+  format: {
+    level: FormatLevels | null;
+    rationale: string | null;
+  }
+  coherence: {
+    level: CoherenceLevels | null;
+    rationale: string | null;
+  }
+  grade: {
+    value: number | null;
+    rationale: string | null;
+  }
 }

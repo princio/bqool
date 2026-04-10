@@ -1,10 +1,15 @@
+import { Answer } from "./answer";
+import { Criterion } from "./criterion";
+import { Derived } from "./derived";
 import { GradeParams } from "./grade";
+import { Grid } from "./grid";
+import { Test } from "./test";
 
 /** A teacher-authored question within a test. */
 export interface Question {
   id: number;
 
-  /* FK test_id Many-to-One */
+  test: Test;
 
   position: number | null;
   name: string;
@@ -14,6 +19,6 @@ export interface Question {
 
   grade_params: GradeParams | null;
 
-  /* criteria (reverse) FK One-to-Many */
-  /* answers  (reverse) FK One-to-Many */
+  criteria: Criterion[];
+  answers: Answer[];
 }

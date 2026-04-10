@@ -1,3 +1,4 @@
+import { Answer } from "./answer";
 import { CriterionCategory } from "./criterion";
 
 export type PenmarkCategory = Exclude<CriterionCategory, "concept">;
@@ -6,7 +7,7 @@ export type PenmarkCategory = Exclude<CriterionCategory, "concept">;
 export interface Penmark {
   id: number;
 
-  /* FK answer_id Many-to-One */
+  answer: Answer;
 
   category: PenmarkCategory;
 

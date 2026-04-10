@@ -7,15 +7,13 @@ import { BooleanQAnswer } from "./booleanq_answer";
 
 export namespace Derived {
 
-  /** Concept enriched with derived evaluation state from AnswerBooleanQs */
-  export interface AnswerCriterion extends Criterion {
-    booleanq: (BooleanQ & { answer: BooleanQAnswer })[];
-  }
-  
-  export interface AnswerCorrected {
+  export interface Correction {
     answer: Answer;
     question: Question;
-    criteria: AnswerCriterion[];
+    criteria: {
+      criterion: Criterion;
+      booleanq_answers: BooleanQAnswer[]
+    }[];
   }
 
   export interface Rubric {

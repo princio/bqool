@@ -1,7 +1,9 @@
+import { Classroom } from "./classroom";
+
 export interface Student {
   id: number;
 
-  /* FK classroom_id Many-to-One */
+  classroom: Classroom;
 
   name: string;
 }

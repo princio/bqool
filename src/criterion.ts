@@ -1,3 +1,6 @@
+import { BooleanQ } from "./booleanq";
+import { Question } from "./question";
+
 /** Criterion categories: key concept, language expression quality, or code correctness. */
 export type CriterionCategory = 'concept' | 'expression' | 'code' | 'error';
 
@@ -5,7 +8,7 @@ export type CriterionCategory = 'concept' | 'expression' | 'code' | 'error';
 export interface Criterion {
   id: number;
 
-  /* FK question_id Many-to-One */
+  question: Question;
 
   name: string;
   definition: string;
@@ -16,7 +19,5 @@ export interface Criterion {
 
   severity: number;
 
-  completeness: number;
-  
-  /* booleanqs (reverse) FK One-to-Many */
+  booleanqs: BooleanQ;
 }
