@@ -19,5 +19,5 @@ export interface Criterion {
 
   severity: number;
 
-  booleanqs: BooleanQ;
+  booleanqs: BooleanQ[];
 }
