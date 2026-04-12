@@ -5,7 +5,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "validate": "tsx contract-compiler/validate.ts",
+    "contract-compiler": "tsx contract-compiler/validate.ts",
     "prepare": "husky"
   },
   "devDependencies": {

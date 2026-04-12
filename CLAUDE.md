@@ -1,5 +1,17 @@
 # bqool — Shared Type Definitions
 
+Classroom
+├── Students
+└── Tests
+    └── Questions
+    |   └── Criteria
+    |       └── BooleanQs
+    └── StudentTest
+        └── Answers (one per question)
+            └── Correction (virtual entity)
+                ├── Penmarks
+                └── BooleanQAnswers (one per booleanq)
+
 See [SHARED_CONVENTIONS.md](./SHARED_CONVENTIONS.md) for cross-repo conventions.
 
 ---
