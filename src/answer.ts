@@ -2,13 +2,14 @@ import { CriterionCategory } from "./criterion";
 import { CoherenceLevels, FormatLevels } from "./grade";
 import { Question } from "./question";
 import { Student } from "./student";
+import { StudentTest } from "./student-test";
 
 
 /** A student's free-text response to a question. */
 export interface Answer {
   id: number;
 
-  student: Student;
+  student_test: StudentTest;
   question: Question;
 
   created_at: string;

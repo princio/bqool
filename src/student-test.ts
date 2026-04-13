@@ -9,17 +9,13 @@ export interface StudentTest {
   student: Student;
   test: Test;
 
-  grid: GridScore;
+  grid: GridScore | null;
 
-  grade: {
-    value: number | null;
-    rationale: string | null;
-  };
+  grade_value: number | null;
+  grade_rationale: string | null;
 
-  bonus: {
-    value: number | null;
-    rationale: string | null;
-  };
+  bonus_value: number | null;
+  bonus_rationale: string | null;
 
   answers: Answer[];
 }

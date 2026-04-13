@@ -1,23 +1,24 @@
-import { Answer } from "./answer";
+import { Answer as _Answer } from "./answer";
 import { Question } from "./question";
-import { BooleanQ } from "./booleanq";
-import { Criterion } from "./criterion";
+import { Criterion as _Criterion } from "./criterion";
 import { BooleanQAnswer } from "./booleanq_answer";
+import { BooleanQ } from "./booleanq";
+import { Penmark } from "./penmark";
 
 
-export namespace Derived {
+export namespace Correction {
 
-  export interface Correction {
-    answer: Answer;
-    question: Question;
-    criteria: {
-      criterion: Criterion;
-      booleanq_answers: BooleanQAnswer[]
-    }[];
+  export interface Criterion extends Omit<_Criterion, 'booleanqs'> {
+    booleanqs: {
+      question: BooleanQ;
+      answer: BooleanQAnswer;
+    }[]
   }
 
-  export interface Rubric {
-    question: Question;
-    criteria: Criterion[];
+  export interface Answer {
+    answer: _Answer;
+    question: Omit<Question, 'criteria'>;
+    criteria: Correction.Criterion[];
+    penmarks: Penmark[];
   }
 }

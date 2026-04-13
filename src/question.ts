@@ -1,8 +1,6 @@
 import { Answer } from "./answer";
 import { Criterion } from "./criterion";
-import { Derived } from "./derived";
 import { GradeParams } from "./grade";
-import { Grid } from "./grid";
 import { Test } from "./test";
 
 /** A teacher-authored question within a test. */
